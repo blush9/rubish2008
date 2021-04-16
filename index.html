@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/vue.js"></script>
+    <script src="js/vue-router.js"></script>
+    <script src="js/axios.min.js"></script>
+</head>
+<body>
+    <div id="app">
+            用户名：<input type="text" v-model='user_name'><br>
+            密码: <input type="password" v-model='upwd'> <br>
+            <button @click = 'login'>登录</button>
+            <span>{{msg}}</span>
+    </div>
+    
+</body>
+</html>
+<script>
+    new Vue({
+        el:'#app',
+        data:{
+            user_name:'',
+            upwd:'',
+            msg:''
+        } ,
+        methods:{
+            login(){
+                //点击后接受 文本框值
+                const user_name = this.user_name;
+                const upwd = this.upwd;
+                console.log(user_name,upwd)
+                //将接收的值 发送给后端接口
+                axios.post("http://localhost:8080/user/login",{user_name:user_name,upwd:upwd}).then(function (res) {  
+                    console.log(res);
+                })  
+            }
+        }
+    })
+</script>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/vue.js"></script>
+    <script src="js/vue-router.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>HELLO APP</h1>
+        <p>
+            <!-- 使用router-link 组件来导航 -->
+            <!-- 通过传入 to 属性指定连接 -->
+            <!-- router-link 默认会被渲染成一个  a 标签 -->
+            <router-link to="/foo">Go to Foo</router-link>
+            <router-link to="/Bar">Go to Bar</router-link>
+        </p>
+        <!-- 路由出口 -->
+        <!-- 路由匹配到的组件将渲染在这 -->
+        <router-view></router-view>
+    </div>
+</body>
+</html>
+<script>
+    //定义组件
+    const foo =  {template:'<div>foo</div>'}
+    const bar =  {template:'<div>bar</div>'}
+
+    //定义路由
+    const routes = [
+        {path:'/foo',component:foo},
+        {path:'/bar',component:bar}
+    ]
+
+    //实例化 vueRouter
+    const router = new VueRouter({
+        routes
+    })
+    //挂载到vue实例  
+    new Vue({
+        el:"#app",
+        router      //router:router
+
+    })
+</script>
